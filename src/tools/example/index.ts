@@ -1,6 +1,6 @@
+import { createLogger } from '@autonomys/agent-core';
 import { DynamicStructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
-import { createLogger } from '@autonomys/agent-core';
 
 /**
  * Tool Template

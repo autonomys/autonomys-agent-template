@@ -1,7 +1,7 @@
 {
-  "name": "example-agent",
+  "name": "autonomys-agent-template",
   "version": "0.1.0",
-  "description": "Example project for autonomys-agents",
+  "description": "template repository for autonomys-agents",
   "type": "module",
   "main": "dist/src/index.js",
   "scripts": {
@@ -10,6 +10,8 @@
     "dev": "tsx --no-cache --watch src/index.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "lint:fix": "eslint \"src/**/*.{js,ts}\" --fix",
     "create-character": "tsx scripts/create-character.ts",
     "generate-certs": "tsx scripts/generate-certs.ts"
   },
@@ -18,9 +20,18 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.29.0"
   },
   "engines": {
     "node": ">=20.18.1"
