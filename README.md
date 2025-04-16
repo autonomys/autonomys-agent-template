@@ -21,7 +21,7 @@ This template repository provides a foundation for building AI agents using the 
 
 ```
 autonomys-agent-template/
-├── agent.ts              # Main agent implementation
+├── index.ts              # Main agent implementation
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # This documentation
@@ -102,6 +102,30 @@ You can extend this template by:
 1. Adding custom tools in separate files
 2. Integrating with other services (Slack, GitHub, etc.)
 
+### Custom Tools
+
+The template includes example tools in the `tools/example` directory that demonstrate how to create custom functionality for your agent.
+
+Custom tools are built using the `DynamicStructuredTool` class from LangChain, which provides:
+
+- **Type-safe inputs**: Define your tool's parameters using Zod schemas
+- **Self-documenting**: Tools describe themselves to the LLM for appropriate use
+- **Structured outputs**: Return consistent data structures from your tools
+
+The example tools serve as templates that can be adapted for various use cases:
+- External API integrations
+- Data processing and analysis
+- User interaction mechanisms
+- Service integrations
+
+To create your own tools:
+1. Define a function that returns a `DynamicStructuredTool` instance
+2. Specify the tool's name, description, and parameter schema
+3. Implement the functionality in the `func` property
+4. Import and register your tools in `index.ts` under the appropriate agent
+5. Install dependencies with `yarn add <necessary-packages>`
+
+This pattern allows you to extend your agent with any custom functionality while maintaining a clean, typed interface that the LLM can understand and use appropriately.
 
 ## License
 

@@ -7,7 +7,7 @@ import {
     createPrompts,
     registerOrchestratorRunner,
     
-    // Default Tools
+    // Default Scheduler Tools
     createAllSchedulerTools,
 
     // Twitter
@@ -34,7 +34,8 @@ import {
   
   } from '@autonomys/agent-core';
     
-  // Get the config instance
+  // CUSTOM TOOLS: Import your custom tools here
+
   const configInstance = await getConfig();
   if (!configInstance) {
     throw new Error('Config instance not found');
@@ -147,12 +148,16 @@ import {
   
     // Orchestrator config
     const prompts = await createPrompts(character);
-  
+
     return {
       modelConfigurations: config.orchestratorConfig.model_configurations,
       tools: [
         ...twitterAgentTool,
         ...schedulerTools,
+        // CUSTOM TOOLS: Register your custom tools here under orchestrator
+        // Example:
+        // ...[customTool],
+        
       ],
       prompts,
       experienceConfig:
