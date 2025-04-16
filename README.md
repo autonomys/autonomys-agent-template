@@ -21,18 +21,23 @@ This template repository provides a foundation for building AI agents using the 
 
 ```
 autonomys-agent-template/
-├── index.ts              # Main agent implementation
+├── src/                  # Source code
+│   ├── index.ts          # Main agent implementation
+│   └── tools/            # Agent tools
+│       └── example/      # Example tool implementations
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # This documentation
 ├── scripts/              # Utility scripts
+│   ├── create-character.ts  # Character creation script
+│   └── generate-certs.ts    # Certificate generation script
 ├── certs/                # SSL certificates
 └── characters/           # Character configurations
     └── character.example/
         └── config/
-            ├── .env.example          # Environment variables template
-            ├── config.example.yaml   # Agent configuration template
-            └── character.example.yaml  # Character personality template
+            ├── .env.example           # Environment variables template
+            ├── config.example.yaml    # Agent configuration template
+            └── character.example.yaml # Character personality template
 ```
 
 ## Getting Started
@@ -99,7 +104,7 @@ You can run multiple characters simultaneously, each with their own configuratio
 
 You can extend this template by:
 
-1. Adding custom tools in separate files
+1. Adding custom tools
 2. Integrating with other services (Slack, GitHub, etc.)
 
 ### Custom Tools
