@@ -1,0 +1,34 @@
+.cookies
+
+characters/*
+!characters/character.example/
+dist/
+
+# Virtual environment
+venv/
+ENV/
+env/
+.env
+
+certs/
+
+# Logs
+logs
+*.log
+
+*.gz
+.yarn/cache
+.yarn/install-state.gz
+.yarn/unplugged
+
+*.tgz
+
+# IDE specific files
+.vscode/
+.idea/
+.DS_Store
+
+.cache/
+node_modules/
+
+

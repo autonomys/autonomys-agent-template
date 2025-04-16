@@ -1,0 +1,51 @@
+{
+  "name": "autonomys-agent-template",
+  "version": "0.1.0",
+  "description": "template repository for autonomys-agents",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autonomys/autonomys-agent-template"
+  },
+  "author": {
+    "name": "Autonomys",
+    "url": "https://www.autonomys.xyz"
+  },
+  "bugs": {
+    "url": "https://github.com/autonomys/autonomys-agent-template/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npx tsx src/index.ts",
+    "dev": "tsx --no-cache --watch src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "lint:fix": "eslint \"src/**/*.{js,ts}\" --fix",
+    "create-character": "tsx scripts/create-character.ts",
+    "generate-certs": "tsx scripts/generate-certs.ts"
+  },
+  "dependencies": {
+    "@autonomys/agent-core": "^0.1.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.29.0"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "packageManager": "yarn@4.8.1"
+}
