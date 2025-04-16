@@ -1,0 +1,25 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build-agent-template:
+    runs-on: ubuntu-latest
+    name: Build Agent Template
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 📦
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Enable Corepack 📦
+        run: corepack enable
+
+      - name: Install dependencies 📦
+        run: yarn install
+
+      - name: Build project 🔧
+        run: yarn build
