@@ -4,6 +4,17 @@
   "description": "template repository for autonomys-agents",
   "type": "module",
   "main": "dist/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autonomys/autonomys-agent-template"
+  },
+  "author": {
+    "name": "Autonomys",
+    "url": "https://www.autonomys.xyz"
+  },
+  "bugs": {
+    "url": "https://github.com/autonomys/autonomys-agent-template/issues"
+  },
   "scripts": {
     "build": "tsc",
     "start": "npx tsx src/index.ts",
@@ -35,5 +46,6 @@
   },
   "engines": {
     "node": ">=20.18.1"
-  }
+  },
+  "packageManager": "yarn@4.8.1"
 }
