@@ -4,7 +4,7 @@ import { createLogger } from '@autonomys/agent-core';
 
 /**
  * Tool Template
- * 
+ *
  * This file provides a generic template for creating custom tools.
  * Replace the placeholders with your actual implementation.
  */
@@ -14,9 +14,9 @@ const logger = createLogger('custom-tool');
 
 /**
  * TEMPLATE: Custom Tool Creation
- * 
+ *
  * This is a template for creating custom tools for your agent.
- * 
+ *
  * To create a new tool:
  * 1. Define a function that returns a DynamicStructuredTool
  * 2. Use Zod to create a schema for your tool's parameters
@@ -45,7 +45,7 @@ export const createCustomTool = (config: any) =>
       parameter1: z.string().describe('Description of parameter1'),
       parameter2: z.number().describe('Description of parameter2'),
       parameter3: z.boolean().optional().describe('Optional parameter'),
-      
+
       // For enum parameters:
       parameter4: z
         .enum(['option1', 'option2', 'option3'])
@@ -61,10 +61,10 @@ export const createCustomTool = (config: any) =>
           parameter3,
           parameter4,
         });
-        
+
         // Implement your tool logic here
         // ...
-        
+
         // Return a structured response
         return {
           success: true,

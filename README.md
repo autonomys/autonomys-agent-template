@@ -104,7 +104,7 @@ You can extend this template by:
 
 ### Custom Tools
 
-The template includes example tools in the `tools/example` directory that demonstrate how to create custom functionality for your agent.
+The template includes example tools in the `src/tools/example` directory that demonstrate how to create custom functionality for your agent.
 
 Custom tools are built using the `DynamicStructuredTool` class from LangChain, which provides:
 
