@@ -55,9 +55,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@autonomys/agent-core@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "@autonomys/agent-core@npm:0.1.1"
+"@autonomys/agent-core@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@autonomys/agent-core@npm:0.1.2"
   dependencies:
     "@autonomys/auto-dag-data": "npm:1.4.17"
     "@autonomys/auto-drive": "npm:1.4.17"
@@ -71,6 +71,7 @@ __metadata:
     "@langchain/ollama": "npm:0.2.0"
     "@langchain/openai": "npm:0.5.5"
     "@notionhq/client": "npm:^2.2.16"
+    "@notionhq/notion-mcp-server": "npm:^1.5.0"
     "@octokit/rest": "npm:^21.1.1"
     "@slack/web-api": "npm:^7.8.0"
     "@types/helmet": "npm:^4.0.0"
@@ -94,7 +95,7 @@ __metadata:
     xml2js: "npm:^0.6.2"
     zod: "npm:^3.22.4"
     zod-to-json-schema: "npm:^3.24.1"
-  checksum: 10c0/03b8e78880e3d1889d8670b02090c154dc25ea1f0efb5c767ad63a1d239a64ef728cbac60e7335d37e9efe6842cd1bd06ce2013cdbf618cb6cfa1ac3f78ee2ad
+  checksum: 10c0/7403489f2bc3ab51188c5ab3d3bddde1d5eb052891e4336ff979fa64c8a16e8086351c29d1de987f7a1f1386722f85c0417fdaee71d7a67fee1c9946a00ce65f
   languageName: node
   linkType: hard
 
@@ -1385,6 +1386,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@modelcontextprotocol/sdk@npm:^1.8.0":
+  version: 1.10.0
+  resolution: "@modelcontextprotocol/sdk@npm:1.10.0"
+  dependencies:
+    content-type: "npm:^1.0.5"
+    cors: "npm:^2.8.5"
+    cross-spawn: "npm:^7.0.3"
+    eventsource: "npm:^3.0.2"
+    express: "npm:^5.0.1"
+    express-rate-limit: "npm:^7.5.0"
+    pkce-challenge: "npm:^5.0.0"
+    raw-body: "npm:^3.0.0"
+    zod: "npm:^3.23.8"
+    zod-to-json-schema: "npm:^3.24.1"
+  checksum: 10c0/597cc151b28345f4d273600f9f80915ad2f82c8fd542a156f807b35fe2d87669957d01fc6ac702af04b5445fc8fa2cc40253c067ef09e797e00f6bcf7342c2d3
+  languageName: node
+  linkType: hard
+
 "@multiformats/dns@npm:^1.0.3":
   version: 1.0.6
   resolution: "@multiformats/dns@npm:1.0.6"
@@ -1487,6 +1506,26 @@ __metadata:
     "@types/node-fetch": "npm:^2.5.10"
     node-fetch: "npm:^2.6.1"
   checksum: 10c0/48af6e0d44c97892374755fbfbca6eb2f27e5ad8baabc511d48ec02cc7d6a1488b1692423ff426cb77c39ac5b4c9bd5498d4b6bc40e295d149ff3d24ce3d8ecc
+  languageName: node
+  linkType: hard
+
+"@notionhq/notion-mcp-server@npm:^1.5.0":
+  version: 1.6.0
+  resolution: "@notionhq/notion-mcp-server@npm:1.6.0"
+  dependencies:
+    "@modelcontextprotocol/sdk": "npm:^1.8.0"
+    axios: "npm:^1.8.4"
+    express: "npm:^4.21.2"
+    form-data: "npm:^4.0.1"
+    mustache: "npm:^4.2.0"
+    openapi-client-axios: "npm:^7.5.5"
+    openapi-schema-validator: "npm:^12.1.3"
+    openapi-types: "npm:^12.1.3"
+    which: "npm:^5.0.0"
+    zod: "npm:3.24.1"
+  bin:
+    notion-mcp-server: bin/cli.mjs
+  checksum: 10c0/b13fc2d54a7f4b2e7f5a440c7c64ba2ba03c39e18436fa3e64028627964c7edab4d669578febbc8b9f9e4f4bd277adafb10153c7006fa6cb1ba99c4134e68b72
   languageName: node
   linkType: hard
 
@@ -2888,6 +2927,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ajv-formats@npm:^2.0.2":
+  version: 2.1.1
+  resolution: "ajv-formats@npm:2.1.1"
+  dependencies:
+    ajv: "npm:^8.0.0"
+  peerDependencies:
+    ajv: ^8.0.0
+  peerDependenciesMeta:
+    ajv:
+      optional: true
+  checksum: 10c0/e43ba22e91b6a48d96224b83d260d3a3a561b42d391f8d3c6d2c1559f9aa5b253bfb306bc94bbeca1d967c014e15a6efe9a207309e95b3eaae07fcbcdc2af662
+  languageName: node
+  linkType: hard
+
 "ajv@npm:^6.12.4":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
@@ -2897,6 +2950,18 @@ __metadata:
     json-schema-traverse: "npm:^0.4.1"
     uri-js: "npm:^4.2.2"
   checksum: 10c0/41e23642cbe545889245b9d2a45854ebba51cda6c778ebced9649420d9205f2efb39cb43dbc41e358409223b1ea43303ae4839db682c848b891e4811da1a5a71
+  languageName: node
+  linkType: hard
+
+"ajv@npm:^8.0.0, ajv@npm:^8.1.0":
+  version: 8.17.1
+  resolution: "ajv@npm:8.17.1"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+    fast-uri: "npm:^3.0.1"
+    json-schema-traverse: "npm:^1.0.0"
+    require-from-string: "npm:^2.0.2"
+  checksum: 10c0/ec3ba10a573c6b60f94639ffc53526275917a2df6810e4ab5a6b959d87459f9ef3f00d5e7865b82677cb7d21590355b34da14d1d0b9c32d75f95a187e76fff35
   languageName: node
   linkType: hard
 
@@ -3006,7 +3071,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "autonomys-agent-template@workspace:."
   dependencies:
-    "@autonomys/agent-core": "npm:^0.1.1"
+    "@autonomys/agent-core": "npm:^0.1.2"
     "@eslint/js": "npm:^9.18.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
     "@typescript-eslint/parser": "npm:^8.29.0"
@@ -3023,7 +3088,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"axios@npm:^1.6.8, axios@npm:^1.7.9, axios@npm:^1.8.3":
+"axios@npm:^1.6.8, axios@npm:^1.7.9, axios@npm:^1.8.3, axios@npm:^1.8.4":
   version: 1.8.4
   resolution: "axios@npm:1.8.4"
   dependencies:
@@ -3045,6 +3110,13 @@ __metadata:
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 10c0/f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
+  languageName: node
+  linkType: hard
+
+"bath-es5@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "bath-es5@npm:3.0.3"
+  checksum: 10c0/cab899940a0eb492afcfd888562cf6a42bebbc63f8cb0b3ba7dfcc828e64e112b23f1270f41beb4649947befddb122cf5515464139281904a61b05de4b82cf42
   languageName: node
   linkType: hard
 
@@ -3724,6 +3796,13 @@ __metadata:
   version: 1.1.2
   resolution: "depd@npm:1.1.2"
   checksum: 10c0/acb24aaf936ef9a227b6be6d495f0d2eb20108a9a6ad40585c5bda1a897031512fef6484e4fdbb80bd249fdaa82841fa1039f416ece03188e677ba11bcfda249
+  languageName: node
+  linkType: hard
+
+"dereference-json-schema@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "dereference-json-schema@npm:0.2.1"
+  checksum: 10c0/c45e4a0fffd82d21f7819ab667874820444d817cd80301993a26215d41f2b0012c91cf49408388b39da2e7eeb02bc532f89397a8887a7bd90f4ecddffc052261
   languageName: node
   linkType: hard
 
@@ -4509,6 +4588,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-uri@npm:^3.0.1":
+  version: 3.0.6
+  resolution: "fast-uri@npm:3.0.6"
+  checksum: 10c0/74a513c2af0584448aee71ce56005185f81239eab7a2343110e5bad50c39ad4fb19c5a6f99783ead1cac7ccaf3461a6034fda89fffa2b30b6d99b9f21c2f9d29
+  languageName: node
+  linkType: hard
+
 "fast-xml-parser@npm:^4.4.1":
   version: 4.5.3
   resolution: "fast-xml-parser@npm:4.5.3"
@@ -4704,7 +4790,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0":
+"form-data@npm:^4.0.0, form-data@npm:^4.0.1":
   version: 4.0.2
   resolution: "form-data@npm:4.0.2"
   dependencies:
@@ -5578,6 +5664,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-schema-traverse@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "json-schema-traverse@npm:1.0.0"
+  checksum: 10c0/71e30015d7f3d6dc1c316d6298047c8ef98a06d31ad064919976583eb61e1018a60a0067338f0f79cabc00d84af3fcc489bd48ce8a46ea165d9541ba17fb30c6
+  languageName: node
+  linkType: hard
+
 "json-stable-stringify-without-jsonify@npm:^1.0.1":
   version: 1.0.1
   resolution: "json-stable-stringify-without-jsonify@npm:1.0.1"
@@ -5797,7 +5890,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:^4.6.1, lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 10c0/402fa16a1edd7538de5b5903a90228aa48eb5533986ba7fa26606a49db2572bf414ff73a2c9f5d5fd36b31c46a5d5c7e1527749c07cbcf965ccff5fbdf32c506
@@ -6544,6 +6637,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openapi-client-axios@npm:^7.5.5":
+  version: 7.6.0
+  resolution: "openapi-client-axios@npm:7.6.0"
+  dependencies:
+    bath-es5: "npm:^3.0.3"
+    dereference-json-schema: "npm:^0.2.1"
+    openapi-types: "npm:^12.1.3"
+  peerDependencies:
+    axios: ">=0.25.0"
+    js-yaml: ^4.1.0
+  checksum: 10c0/03db26d4234f85b185bec6777ec6e1fe3a1fc39c2b5a3c548f03f9697fd04a7deddca80c80637c6cfa5e45f282fa3d5a6c2b9fc43e8c3fcfc515746d8de0d94f
+  languageName: node
+  linkType: hard
+
+"openapi-schema-validator@npm:^12.1.3":
+  version: 12.1.3
+  resolution: "openapi-schema-validator@npm:12.1.3"
+  dependencies:
+    ajv: "npm:^8.1.0"
+    ajv-formats: "npm:^2.0.2"
+    lodash.merge: "npm:^4.6.1"
+    openapi-types: "npm:^12.1.3"
+  checksum: 10c0/701c2f3d911fb7f69760642169defe7ab114a337a23063caeb36a1dda4362b742be526feb4c5cd0ff645836c2d32aca9d5e6fdf6a1b49af3f2ac89ecbfb1a64b
+  languageName: node
+  linkType: hard
+
 "openapi-types@npm:^12.1.3":
   version: 12.1.3
   resolution: "openapi-types@npm:12.1.3"
@@ -7182,6 +7301,13 @@ __metadata:
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
   checksum: 10c0/83aa76a7bc1531f68d92c75a2ca2f54f1b01463cb566cf3fbc787d0de8be30c9dbc211d1d46be3497dac5785fe296f2dd11d531945ac29730643357978966e99
+  languageName: node
+  linkType: hard
+
+"require-from-string@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "require-from-string@npm:2.0.2"
+  checksum: 10c0/aaa267e0c5b022fc5fd4eef49d8285086b15f2a1c54b28240fdf03599cbd9c26049fee3eab894f2e1f6ca65e513b030a7c264201e3f005601e80c49fb2937ce2
   languageName: node
   linkType: hard
 
@@ -8679,6 +8805,13 @@ __metadata:
   peerDependencies:
     zod: ^3.24.1
   checksum: 10c0/0745b94ba53e652d39f262641cdeb2f75d24339fb6076a38ce55bcf53d82dfaea63adf524ebc5f658681005401687f8e9551c4feca7c4c882e123e66091dfb90
+  languageName: node
+  linkType: hard
+
+"zod@npm:3.24.1":
+  version: 3.24.1
+  resolution: "zod@npm:3.24.1"
+  checksum: 10c0/0223d21dbaa15d8928fe0da3b54696391d8e3e1e2d0283a1a070b5980a1dbba945ce631c2d1eccc088fdbad0f2dfa40155590bf83732d3ac4fcca2cc9237591b
   languageName: node
   linkType: hard
 
