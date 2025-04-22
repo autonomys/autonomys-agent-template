@@ -55,9 +55,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@autonomys/agent-core@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@autonomys/agent-core@npm:0.1.2"
+"@autonomys/agent-core@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@autonomys/agent-core@npm:0.2.0"
   dependencies:
     "@autonomys/auto-dag-data": "npm:1.4.17"
     "@autonomys/auto-drive": "npm:1.4.17"
@@ -95,7 +95,7 @@ __metadata:
     xml2js: "npm:^0.6.2"
     zod: "npm:^3.22.4"
     zod-to-json-schema: "npm:^3.24.1"
-  checksum: 10c0/7403489f2bc3ab51188c5ab3d3bddde1d5eb052891e4336ff979fa64c8a16e8086351c29d1de987f7a1f1386722f85c0417fdaee71d7a67fee1c9946a00ce65f
+  checksum: 10c0/0dc7a93dd68ef4f2301c47a3d00fe655ef5c31c3ef2014c00b6638393edcedce99c6e4eea8cc09b0e27f5b8c1ce46b34914c711b1b37a584253b260be52795b8
   languageName: node
   linkType: hard
 
@@ -3071,7 +3071,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "autonomys-agent-template@workspace:."
   dependencies:
-    "@autonomys/agent-core": "npm:^0.1.2"
+    "@autonomys/agent-core": "npm:^0.2.0"
     "@eslint/js": "npm:^9.18.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
     "@typescript-eslint/parser": "npm:^8.29.0"
