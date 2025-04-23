@@ -8,6 +8,7 @@ import {
   startTaskExecutor,
   withApiLogger,
 } from '@autonomys/agent-core';
+
 import { createAgentRunnerOptions } from './agent.js';
 
 const configInstance = await getConfig();

@@ -1,6 +1,6 @@
-import { createTwitterTool } from './tools.js';
 import { createOrchestratorConfig } from './config/orchestrator.js';
 import { ConfigInstance } from './config/types.js';
+import { createTwitterTool } from './tools.js';
 
 export const createAgentRunnerOptions = async (configInstance: ConfigInstance) => {
   // Define custom tools
