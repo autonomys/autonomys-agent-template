@@ -22,8 +22,9 @@ This template repository provides a foundation for building AI agents using the 
 ```
 autonomys-agent-template/
 ├── src/                  # Source code
-│   ├── index.ts          # Main agent implementation
-│   └── tools             # Agent tools
+│   ├── agent.ts          # Agent assembly and tool registration
+│   ├── index.ts          # Main entrypoint (starts the agent)
+│   └── tools/            # Agent tools
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # This documentation
@@ -42,38 +43,46 @@ autonomys-agent-template/
 ## Getting Started
 
 1. Install dependencies:
+
    ```bash
    yarn install
    ```
+
    - Windows users will need to install Visual Studio C++ Redistributable. They can be found here: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
-
 2. Create a character configuration:
+
    ```bash
    yarn create-character your_character_name
    ```
+
    This will create a new character with the necessary configuration files based on the example template.
 
 3. Configure your character:
+
    - Edit `characters/your_character_name/config/.env` with your API keys and credentials
    - Customize `characters/your_character_name/config/config.yaml` for agent behavior
    - Define personality in `characters/your_character_name/config/your_character_name.yaml`
 
 4. Generate SSL certificates (required for API server):
+
    ```bash
    yarn generate-certs
    ```
 
 5. Run the agent:
+
    ```bash
       cd <to/agent/project>
       yarn start <your_character_name>
    ```
+
    If you have stored workspace files (`characters`, `certs`, and `.cookies` directories) in a custom location, use the `--workspace` argument with the absolute path to your desired directory:
+
    ```bash
    # Specify a workspace path
    yarn start your_character_name --workspace=/path/to/workspace
-   
+
    # Run in headless mode (no API server)
    yarn start your_character_name --headless
    ```
@@ -83,6 +92,7 @@ autonomys-agent-template/
 You can run multiple characters simultaneously, each with their own configuration and personality:
 
 1. Create multiple character configurations:
+
    ```bash
    yarn create-character alice
    yarn create-character bob
@@ -91,10 +101,11 @@ You can run multiple characters simultaneously, each with their own configuratio
 2. Configure each character separately with different personalities and API settings.
 
 3. Run each character in a separate terminal session:
+
    ```bash
    # Terminal 1
    yarn start alice
-   
+
    # Terminal 2
    yarn start bob
    ```
@@ -120,10 +131,11 @@ Custom tools are built using the `DynamicStructuredTool` class from LangChain, w
 - **Structured outputs**: Return consistent data structures from your tools
 
 To create your own tools:
+
 1. Define a function that returns a `DynamicStructuredTool` instance
 2. Specify the tool's name, description, and parameter schema
 3. Implement the functionality in the `func` property
-4. Import and register your tools in `index.ts` under the appropriate agent
+4. Import and register your tools in `agent.ts`
 5. Install dependencies with `yarn add <necessary-packages>`
 
 ### Example Tool Implementation
@@ -198,7 +210,7 @@ export const createCustomTool = (config: any) => {
       }
     },
   });
-}
+};
 ```
 
 ## Using MCP Tools
@@ -228,16 +240,19 @@ export const createNotionTools = async (
 **Key components of an MCP tool:**
 
 1. **Imports**:
+
    - `createMcpClientTool`: Factory function that handles client setup and tool loading
    - `StdioServerParameters`: Configuration for the server process
    - `StructuredToolInterface`: LangChain-compatible tool interface
 
 2. **Server Parameters**:
+
    - `command`: Path to Node.js executable (process.execPath)
    - `args`: Path to the MCP server executable
    - `env`: Environment variables for authentication and configuration
 
 3. **Tool Creation Process**:
+
    - Sets up a transport layer for client-server communication
    - Initializes an MCP client with name and version
    - Connects the client to the transport
@@ -254,20 +269,19 @@ export const createNotionTools = async (
    });
    ```
 
-MCP tools automatically handle:
-- API authentication and headers
-- Request/response formatting and validation
-- Error handling and retries
-- Rate limiting and queuing
-- Streaming responses for large data
-- Process management for the server
-- Tool discovery and registration
+MCP tools, through the standardized protocol and client libraries, facilitate:
+
+- **Standardized Communication:** Defining clear formats for requests and responses between the agent (client) and the tool provider (server).
+- **Tool Discovery:** Allowing the agent to automatically discover the capabilities (tools) offered by a connected server.
+- **Simplified Integration:** Providing a consistent way to connect various tools and services.
+- **Authentication Handling:** Facilitating the secure passing of credentials (e.g., API keys via environment variables) to the tool server, which then handles the actual authentication with the end service.
 
 ### Installing Tools with autoOS CLI
 
 You can easily install pre-built tools from the Autonomys registry using the autoOS CLI:
 
 1. Install the autoOS CLI:
+
    ```bash
    # Using npm (recommended)
    npm install -g @autonomys/agent-os
@@ -277,24 +291,28 @@ You can easily install pre-built tools from the Autonomys registry using the aut
    ```
 
 2. Search for available tools (`WIP`):
+
    ```bash
    # If installed globally
    autoOS search <search-term>
    ```
 
 3. Install a tool:
+
    - Go to your agent directory
+
    ```bash
    autoOS install <tool-name>
-   
+
    # Install specific version
    autoOS install <tool-name> -v <version>
    ```
 
 4. After installation, the tool will be available in your project's `src/tools` directory. Import and register it in your agent:
+
    ```typescript
    import { createTool } from './tools/<tool-name>';
-   
+
    // Add it to your agent's tools
    const agent = new Agent({
      tools: [createTool(), ...otherTools],
