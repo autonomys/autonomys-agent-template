@@ -42,7 +42,7 @@ const main = async () => {
     const runner = await orchestratorRunner();
 
     logger.info('Starting task executor...');
-    const _starTaskExecutor = startTaskExecutor(runner, 'orchestrator');
+    const _startTaskExecutor = startTaskExecutor(runner, 'orchestrator');
 
     logger.info('Application initialized and ready to process scheduled tasks');
     return new Promise(() => {});
