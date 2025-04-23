@@ -2,16 +2,16 @@ import {
   createAllSchedulerTools,
   createApiServer,
   CreateApiServerParams,
-  createExperienceManager,
   createPrompts,
   OrchestratorRunnerOptions,
 } from '@autonomys/agent-core';
 
+import { createExperienceConfig } from './experiences.js';
 import { ConfigInstance, Tools } from './types.js';
 
 export const createOrchestratorConfig = async (configInstance: ConfigInstance, tools: Tools) => {
-  const { config, agentVersion, characterName } = configInstance;
-  const { characterConfig, autoDriveConfig, blockchainConfig } = config;
+  const { config, characterName } = configInstance;
+  const { characterConfig } = config;
   const { characterPath } = characterConfig;
 
   const createApi = () => {
@@ -41,55 +41,7 @@ export const createOrchestratorConfig = async (configInstance: ConfigInstance, t
 
   const apiConfig = config.ENABLE_API ? createApi() : undefined;
 
-  const saveExperiences = autoDriveConfig.AUTO_DRIVE_SAVE_EXPERIENCES;
-  const monitoringEnabled = autoDriveConfig.AUTO_DRIVE_MONITORING;
-  const experienceManager =
-    (saveExperiences || monitoringEnabled) &&
-    blockchainConfig.PRIVATE_KEY &&
-    blockchainConfig.RPC_URL &&
-    blockchainConfig.CONTRACT_ADDRESS &&
-    autoDriveConfig.AUTO_DRIVE_API_KEY
-      ? await createExperienceManager({
-          autoDriveApiOptions: {
-            apiKey: autoDriveConfig.AUTO_DRIVE_API_KEY,
-            network: autoDriveConfig.AUTO_DRIVE_NETWORK,
-          },
-          uploadOptions: {
-            compression: true,
-            password: autoDriveConfig.AUTO_DRIVE_ENCRYPTION_PASSWORD,
-          },
-          walletOptions: {
-            privateKey: blockchainConfig.PRIVATE_KEY,
-            rpcUrl: blockchainConfig.RPC_URL,
-            contractAddress: blockchainConfig.CONTRACT_ADDRESS,
-          },
-          agentOptions: {
-            agentVersion: agentVersion,
-            agentName: characterName,
-            agentPath: characterPath,
-          },
-        })
-      : undefined;
-
-  const experienceConfig =
-    saveExperiences && experienceManager
-      ? {
-          saveExperiences: true as const,
-          experienceManager,
-        }
-      : {
-          saveExperiences: false as const,
-        };
-
-  const monitoringConfig =
-    monitoringEnabled && experienceManager
-      ? {
-          enabled: true as const,
-          monitoringExperienceManager: experienceManager,
-        }
-      : {
-          enabled: false as const,
-        };
+  const { experienceConfig, monitoringConfig } = await createExperienceConfig(configInstance);
   const prompts = await createPrompts(characterConfig);
   const schedulerTools = createAllSchedulerTools();
   const orchestratorConfig: OrchestratorRunnerOptions = {
