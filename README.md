@@ -263,11 +263,11 @@ MCP tools automatically handle:
 - Process management for the server
 - Tool discovery and registration
 
-### Installing Tools with autoOS CLI
+### Installing Tools with agent-os CLI
 
-You can easily install pre-built tools from the Autonomys registry using the autoOS CLI:
+You can easily install pre-built tools from the Autonomys registry using the agent-os CLI:
 
-1. Install the autoOS CLI:
+1. Install the agent-os CLI:
    ```bash
    # Using npm (recommended)
    npm install -g @autonomys/agent-os
@@ -279,16 +279,16 @@ You can easily install pre-built tools from the Autonomys registry using the aut
 2. Search for available tools (`WIP`):
    ```bash
    # If installed globally
-   autoOS search <search-term>
+   agent-os search <search-term>
    ```
 
 3. Install a tool:
    - Go to your agent directory
    ```bash
-   autoOS install <tool-name>
+   agent-os install <tool-name>
    
    # Install specific version
-   autoOS install <tool-name> -v <version>
+   agent-os install <tool-name> -v <version>
    ```
 
 4. After installation, the tool will be available in your project's `src/tools` directory. Import and register it in your agent:
