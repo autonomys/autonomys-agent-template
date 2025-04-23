@@ -23,8 +23,7 @@ This template repository provides a foundation for building AI agents using the 
 autonomys-agent-template/
 ├── src/                  # Source code
 │   ├── index.ts          # Main agent implementation
-│   └── tools/            # Agent tools
-│       └── example/      # Example tool implementations
+│   └── tools             # Agent tools
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # This documentation
@@ -67,11 +66,16 @@ autonomys-agent-template/
 
 5. Run the agent:
    ```bash
+      cd <to/agent/project>
+      yarn start <your_character_name>
+   ```
+   If you have stored workspace files (`characters`, `certs`, and `.cookies` directories) in a custom location, use the `--workspace` argument with the absolute path to your desired directory:
+   ```bash
    # Specify a workspace path
    yarn start your_character_name --workspace=/path/to/workspace
    
    # Run in headless mode (no API server)
-   yarn start your_character_name --workspace=/path/to/workspace --headless
+   yarn start your_character_name --headless
    ```
 
 ## Running Multiple Characters
@@ -89,10 +93,10 @@ You can run multiple characters simultaneously, each with their own configuratio
 3. Run each character in a separate terminal session:
    ```bash
    # Terminal 1
-   yarn start alice --workspace=/path/to/workspace
+   yarn start alice
    
    # Terminal 2
-   yarn start bob --workspace=/path/to/workspace
+   yarn start bob
    ```
 
 4. Each character will:
@@ -109,19 +113,11 @@ You can extend this template by:
 
 ### Custom Tools
 
-The template includes example tools in the `src/tools/example` directory that demonstrate how to create custom functionality for your agent.
-
 Custom tools are built using the `DynamicStructuredTool` class from LangChain, which provides:
 
 - **Type-safe inputs**: Define your tool's parameters using Zod schemas
 - **Self-documenting**: Tools describe themselves to the LLM for appropriate use
 - **Structured outputs**: Return consistent data structures from your tools
-
-The example tools serve as templates that can be adapted for various use cases:
-- External API integrations
-- Data processing and analysis
-- User interaction mechanisms
-- Service integrations
 
 To create your own tools:
 1. Define a function that returns a `DynamicStructuredTool` instance
@@ -130,7 +126,183 @@ To create your own tools:
 4. Import and register your tools in `index.ts` under the appropriate agent
 5. Install dependencies with `yarn add <necessary-packages>`
 
-This pattern allows you to extend your agent with any custom functionality while maintaining a clean, typed interface that the LLM can understand and use appropriately.
+### Example Tool Implementation
+
+Here's a complete example of how to create a custom tool:
+
+```typescript
+import { createLogger } from '@autonomys/agent-core';
+import { DynamicStructuredTool } from '@langchain/core/tools';
+import { z } from 'zod';
+
+// Create a logger for your tool
+const logger = createLogger('custom-tool');
+
+/**
+ * Creates a custom tool for your agent
+ * @param config - Configuration options for your tool
+ * @returns A DynamicStructuredTool instance
+ */
+export const createCustomTool = (config: any) => {
+  new DynamicStructuredTool({
+    name: 'custom_tool_name',
+    description: `
+    Description of what your tool does.
+    USE THIS WHEN:
+    - Specify when the agent should use this tool
+    - Add clear usage guidelines
+    OUTPUT: Describe what the tool returns
+    `,
+    schema: z.object({
+      // Define your input parameters using Zod
+      parameter1: z.string().describe('Description of parameter1'),
+      parameter2: z.number().describe('Description of parameter2'),
+      parameter3: z.boolean().optional().describe('Optional parameter'),
+
+      // For enum parameters:
+      parameter4: z
+        .enum(['option1', 'option2', 'option3'])
+        .default('option1')
+        .describe('Parameter with predefined options'),
+    }),
+    func: async ({ parameter1, parameter2, parameter3, parameter4 }) => {
+      try {
+        // Log the function call
+        logger.info('Custom tool called with parameters', {
+          parameter1,
+          parameter2,
+          parameter3,
+          parameter4,
+        });
+
+        // Implement your tool logic here
+        // ...
+
+        // Return a structured response
+        return {
+          success: true,
+          result: {
+            message: 'Operation completed successfully',
+            data: {
+              // Your output data
+            },
+          },
+        };
+      } catch (error) {
+        // Log and handle errors
+        logger.error('Error in custom tool:', error);
+        return {
+          success: false,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        };
+      }
+    },
+  });
+}
+```
+
+## Using MCP Tools
+
+Model Context Protocol (MCP) tools provide a standardized way to integrate external services with your agent. MCP tools use a client-server architecture to communicate with external services through a standardized protocol. Here's an example of how to create MCP tools for notion:
+
+```typescript
+import { createMcpClientTool } from '@autonomys/agent-core';
+import { StdioServerParameters } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { StructuredToolInterface } from '@langchain/core/tools';
+
+export const createNotionTools = async (
+  integrationSecret: string,
+): Promise<StructuredToolInterface[]> => {
+  const notionServerParams: StdioServerParameters = {
+    command: process.execPath,
+    args: ['node_modules/.bin/notion-mcp-server'],
+    env: {
+      OPENAPI_MCP_HEADERS: `{\"Authorization\": \"Bearer ${integrationSecret}\", \"Notion-Version\": \"2022-06-28\" }`,
+    },
+  };
+  const tools = await createMcpClientTool('notion-mcp', '0.0.1', notionServerParams);
+  return tools;
+};
+```
+
+**Key components of an MCP tool:**
+
+1. **Imports**:
+   - `createMcpClientTool`: Factory function that handles client setup and tool loading
+   - `StdioServerParameters`: Configuration for the server process
+   - `StructuredToolInterface`: LangChain-compatible tool interface
+
+2. **Server Parameters**:
+   - `command`: Path to Node.js executable (process.execPath)
+   - `args`: Path to the MCP server executable
+   - `env`: Environment variables for authentication and configuration
+
+3. **Tool Creation Process**:
+   - Sets up a transport layer for client-server communication
+   - Initializes an MCP client with name and version
+   - Connects the client to the transport
+   - Loads available tools from the server
+
+4. **Integration**:
+   - Add credential in `characters/your_character_folder/config/.env`
+   ```typescript
+   // In your agent configuration
+   const notionTools = await createNotionTools(process.env.NOTION_API_KEY);
+   const agent = new Agent({
+     tools: [...notionTools, ...otherTools],
+     // other configuration
+   });
+   ```
+
+MCP tools automatically handle:
+- API authentication and headers
+- Request/response formatting and validation
+- Error handling and retries
+- Rate limiting and queuing
+- Streaming responses for large data
+- Process management for the server
+- Tool discovery and registration
+
+### Installing Tools with autoOS CLI
+
+You can easily install pre-built tools from the Autonomys registry using the autoOS CLI:
+
+1. Install the autoOS CLI:
+   ```bash
+   # Using npm (recommended)
+   npm install -g @autonomys/agent-os
+
+   # Using Yarn 2.x
+   yarn dlx @autonomys/agent-os
+   ```
+
+2. Search for available tools (`WIP`):
+   ```bash
+   # If installed globally
+   autoOS search <search-term>
+   ```
+
+3. Install a tool:
+   - Go to your agent directory
+   ```bash
+   autoOS install <tool-name>
+   
+   # Install specific version
+   autoOS install <tool-name> -v <version>
+   ```
+
+4. After installation, the tool will be available in your project's `src/tools` directory. Import and register it in your agent:
+   ```typescript
+   import { createTool } from './tools/<tool-name>';
+   
+   // Add it to your agent's tools
+   const agent = new Agent({
+     tools: [createTool(), ...otherTools],
+     // other agent configuration
+   });
+   ```
+
+Note: Some tools may require additional configuration or API keys. Check the tool's documentation for specific setup instructions.
 
 ## License
 
