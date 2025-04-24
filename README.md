@@ -24,6 +24,7 @@ autonomys-agent-template/
 ├── src/                  # Source code
 │   ├── agent.ts          # Agent assembly and tool registration
 │   ├── index.ts          # Main entrypoint (starts the agent)
+│   ├── tools.ts          # Define custom tool creators (e.g. agents)
 │   └── tools/            # Agent tools
 ├── package.json          # Project dependencies
 ├── tsconfig.json         # TypeScript configuration
