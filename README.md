@@ -277,11 +277,11 @@ MCP tools, through the standardized protocol and client libraries, facilitate:
 - **Simplified Integration:** Providing a consistent way to connect various tools and services.
 - **Authentication Handling:** Facilitating the secure passing of credentials (e.g., API keys via environment variables) to the tool server, which then handles the actual authentication with the end service.
 
-### Installing Tools with autoOS CLI
+### Installing Tools with agent-os CLI
 
-You can easily install pre-built tools from the Autonomys registry using the autoOS CLI:
+You can easily install pre-built tools from the Autonomys registry using the agent-os CLI:
 
-1. Install the autoOS CLI:
+1. Install the agent-os CLI:
 
    ```bash
    # Using npm (recommended)
@@ -295,7 +295,7 @@ You can easily install pre-built tools from the Autonomys registry using the aut
 
    ```bash
    # If installed globally
-   autoOS search <search-term>
+   agent-os search <search-term>
    ```
 
 3. Install a tool:
@@ -303,10 +303,10 @@ You can easily install pre-built tools from the Autonomys registry using the aut
    - Go to your agent directory
 
    ```bash
-   autoOS install <tool-name>
+   agent-os install <tool-name>
 
    # Install specific version
-   autoOS install <tool-name> -v <version>
+   agent-os install <tool-name> -v <version>
    ```
 
 4. After installation, the tool will be available in your project's `src/tools` directory. Import and register it in your agent:
