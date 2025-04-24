@@ -1,0 +1,30 @@
+services:
+  autonomys-agent-${CHARACTER_NAME:-character.example}:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    image: autonomys-agent:${TAG:-latest}
+    container_name: autonomys-agent-${CHARACTER_NAME:-character.example}
+    environment:
+      - CHARACTER_NAME=${CHARACTER_NAME:-character.example}
+    volumes:
+      - ./.cookies:/app/.cookies
+      - ./certs:/app/certs
+      - ./characters/${CHARACTER_NAME:-character.example}:/app/characters/${CHARACTER_NAME:-character.example}:Z
+    ports:
+      - "${HOST_PORT:-3010}:${API_PORT:-3010}"
+    restart: unless-stopped
+    healthcheck:
+      # Health check using the configured port
+      test: ["CMD", "sh", "-c", "if [ \"$$ENABLE_AUTH\" = \"true\" ] || [ \"$$ENABLE_AUTH\" = \"TRUE\" ]; then curl -k -f -H \"Authorization: Bearer $$API_TOKEN\" https://localhost:${API_PORT:-3010}/health || exit 1; else curl -k -f https://localhost:${API_PORT:-3010}/health || exit 1; fi"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # Run container with non-privileged security options
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  agent_cookies_${CHARACTER_NAME:-character.example}:
