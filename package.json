@@ -27,7 +27,7 @@
     "generate-certs": "tsx scripts/generate-certs.ts"
   },
   "dependencies": {
-    "@autonomys/agent-core": "^0.2.0",
+    "@autonomys/agent-core": "^0.2.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

@@ -4,6 +4,9 @@ characters/*
 !characters/character.example/
 dist/
 
+# Docker
+docker-compose-*.yml
+!docker-compose-template.yml
 # Virtual environment
 venv/
 ENV/
