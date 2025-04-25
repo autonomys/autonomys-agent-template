@@ -116,6 +116,69 @@ You can run multiple characters simultaneously, each with their own configuratio
    - Run its own API server on the specified port
    - Execute tasks according to its unique schedule and personality
 
+
+## Docker Deployment
+
+You can also run your agents using Docker. This provides isolation and makes it easy to run multiple agents simultaneously.
+
+### Prerequisites
+- Docker installed on your system ([Installation Guide](https://docs.docker.com/get-docker/))
+- Docker Compose Plugin required ([Compose Plugin Installation](https://docs.docker.com/compose/install/))
+- Character configuration set up (follow steps 1 & 2 from Getting Started)
+
+### Architecture
+The Docker deployment uses a single locally built image that can run multiple character containers. Each character runs in its own isolated container with:
+- Character-specific volumes for configuration and data
+- Dedicated network ports
+- Isolated memory and processes
+
+### Running with Docker
+
+1. Generate your character's docker-compose file:
+
+   First:
+   ```bash
+   chmod +x ./generate-compose.sh
+   ```
+   
+   Then:
+   ```bash
+   ./generate-compose.sh <your-character-name> [HOST_PORT] [API_PORT]
+   ```
+   Example:
+   ```bash
+   # Run Alice on port 3011 on docker with API port on 3011
+   ./generate-compose.sh Alice 3011 3011
+   
+   # Run Bob on port 3012 on docker with API port on 3011
+   ./generate-compose.sh Bob 3012 3011
+   ```
+
+2. The script will generate a `docker-compose-{character-name}.yml` file and show you the available commands:
+   - Build and start the container: 
+     ```bash
+     docker compose -f docker-compose-{character-name}.yml up -d
+     ```
+   - Stop and remove the container: 
+     ```bash
+     docker compose -f docker-compose-{character-name}.yml down
+     ```
+   - View container logs: 
+     ```bash
+     docker compose -f docker-compose-{character-name}.yml logs -f
+     ```
+   - Access container shell: 
+     ```bash
+     docker exec -it autonomys-agent-{character-name} bash
+     ```
+
+### File Permissions
+
+The Docker container runs the startup commands as `root` to set up proper permissions before switching to the `autonomys` user to run the application. By default, the container sets `777` (full read/write/execute for all users) permissions on the character directory.
+
+> **Note:** The default permission setting of `777` provides maximum compatibility across different environments but may not be ideal for production deployments. Consider modifying the permissions in `docker-compose-template.yml` to a more restrictive value (like `750` or `755`) based on your security requirements.
+
+
 ## Extending the Agent
 
 You can extend this template by:
