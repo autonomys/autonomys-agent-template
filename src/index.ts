@@ -1,4 +1,5 @@
 import {
+  createApiServer,
   createLogger,
   createOrchestratorRunner,
   getConfig,
@@ -7,7 +8,6 @@ import {
   setupSignalHandlers,
   startTaskExecutor,
   withApiLogger,
-  createApiServer,
 } from '@autonomys/agent-core';
 
 import { createAgentRunnerOptions } from './agent.js';

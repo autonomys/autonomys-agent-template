@@ -4,9 +4,9 @@ import {
   createTwitterApi,
 } from '@autonomys/agent-core';
 
+import { createAgentApi } from './config/api.js';
 import { createExperienceConfig } from './config/experiences.js';
 import { ConfigInstance } from './config/types.js';
-import { createAgentApi } from './config/api.js';
 const schedulerTools = createAllSchedulerTools();
 
 // Define custom tool creators

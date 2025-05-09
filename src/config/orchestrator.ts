@@ -4,9 +4,9 @@ import {
   OrchestratorRunnerOptions,
 } from '@autonomys/agent-core';
 
+import { createAgentApi } from './api.js';
 import { createExperienceConfig } from './experiences.js';
 import { ConfigInstance, Tools } from './types.js';
-import { createAgentApi } from './api.js';
 
 export const createOrchestratorConfig = async (configInstance: ConfigInstance, tools: Tools) => {
   const { config } = configInstance;
