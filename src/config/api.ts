@@ -1,6 +1,6 @@
 import { CreateApiServerParams, OrchestratorRunnerOptions } from "@autonomys/agent-core";
 import { ConfigInstance } from "./types.js";
-
+import { chatAppInstance } from "./chatNode.js";
 export const createAgentApi = (configInstance: ConfigInstance) => {
     const { config } = configInstance;
     const { apiSecurityConfig, API_PORT } = config;
@@ -28,6 +28,7 @@ export const createApiServerConfig = (configInstance: ConfigInstance) => {
         authToken: apiSecurityConfig.API_TOKEN ?? '',
         apiPort: API_PORT,
         allowedOrigins: apiSecurityConfig.CORS_ALLOWED_ORIGINS,
+        chatAppInstance: chatAppInstance(configInstance),
     };
 
     return serverApiServerParams;
