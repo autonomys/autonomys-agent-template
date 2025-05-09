@@ -116,6 +116,18 @@ You can run multiple characters simultaneously, each with their own configuratio
    - Run its own API server on the specified port
    - Execute tasks according to its unique schedule and personality
 
+## Web Cli With Docker
+Web Cli is a modern web-based interface for interacting with your agent. You can have web cli as a container by runnint the command below:
+
+```bash
+docker run -d \
+      -p <HOST_LOCAL_PORT>:<CONTAINER_PORT> \
+      -e PORT=<CONTAINER_PORT> \
+      -e RUNTIME_API_URL="<YOUR_API_URL>" \
+      -e RUNTIME_API_TOKEN="<YOUR_API_TOKEN>" \
+      --name autonomys-web-cli \
+      ghcr.io/autonomys/autonomys-agents/web-cli:latest
+```
 
 ## Docker Deployment
 
