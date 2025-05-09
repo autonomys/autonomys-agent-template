@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@autonomys/agent-core": "^0.3.0",
+    "@langchain/deepseek": "^0.0.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
