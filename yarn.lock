@@ -55,9 +55,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@autonomys/agent-core@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@autonomys/agent-core@npm:0.3.0"
+"@autonomys/agent-core@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@autonomys/agent-core@npm:0.3.1"
   dependencies:
     "@autonomys/auto-dag-data": "npm:1.4.17"
     "@autonomys/auto-drive": "npm:1.4.17"
@@ -65,6 +65,7 @@ __metadata:
     "@langchain/anthropic": "npm:0.3.17"
     "@langchain/community": "npm:0.3.40"
     "@langchain/core": "npm:0.3.44"
+    "@langchain/deepseek": "npm:^0.0.1"
     "@langchain/groq": "npm:0.2.0"
     "@langchain/langgraph": "npm:0.2.63"
     "@langchain/mcp-adapters": "npm:^0.4.2"
@@ -95,7 +96,7 @@ __metadata:
     xml2js: "npm:^0.6.2"
     zod: "npm:^3.22.4"
     zod-to-json-schema: "npm:^3.24.1"
-  checksum: 10c0/ec599633694ecab1d2460d543b05f8206d474bf5e6f3d0a4d06f6aecc76408711a6b37f63498e2dbee5aaeb6eb464ae9179a8d9b03affc07b6cb3efceffe91e9
+  checksum: 10c0/6bb81d5a7b8b63193af69123c4c0fe20b03e61a74773ecd8fa8abb9f58574b76724dd913c9c003a8b0435eb213a8f9c7a8ab828ed0f3cbd82bb0ad9ab9f1e09b
   languageName: node
   linkType: hard
 
@@ -3097,9 +3098,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "autonomys-agent-template@workspace:."
   dependencies:
-    "@autonomys/agent-core": "npm:^0.3.0"
+    "@autonomys/agent-core": "npm:^0.3.1"
     "@eslint/js": "npm:^9.18.0"
-    "@langchain/deepseek": "npm:^0.0.1"
     "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
     "@typescript-eslint/parser": "npm:^8.29.0"
     eslint: "npm:^9.23.0"
