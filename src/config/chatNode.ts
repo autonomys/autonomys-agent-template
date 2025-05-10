@@ -1,4 +1,5 @@
 import {
+  type ChatWorkflow,
   createChatNodeConfig,
   createChatWorkflow,
   createDefaultChatTools,
@@ -8,10 +9,7 @@ import {
 
 import { ConfigInstance } from './types.js';
 
-// Temporary type for chatAppInstance - will fix by next agent-core release
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const chatAppInstance = async (configInstance: ConfigInstance): Promise<any> => {
+export const chatAppInstance = (configInstance: ConfigInstance): ChatWorkflow => {
   const { config, characterName } = configInstance;
   const { characterConfig } = config;
   const { characterPath } = characterConfig;
