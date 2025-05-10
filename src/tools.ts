@@ -4,9 +4,9 @@ import {
   createTwitterApi,
 } from '@autonomys/agent-core';
 
+import { createAgentApi } from './config/api.js';
 import { createExperienceConfig } from './config/experiences.js';
 import { ConfigInstance } from './config/types.js';
-
 const schedulerTools = createAllSchedulerTools();
 
 // Define custom tool creators
@@ -15,7 +15,7 @@ export const createTwitterTool = async (configInstance: ConfigInstance) => {
   if (!twitterConfig || !twitterConfig.USERNAME || !twitterConfig.PASSWORD) {
     return undefined;
   }
-
+  const apiConfig = createAgentApi(configInstance);
   const twitterApi = await createTwitterApi(
     twitterConfig.USERNAME,
     twitterConfig.PASSWORD,
@@ -29,6 +29,7 @@ export const createTwitterTool = async (configInstance: ConfigInstance) => {
     experienceConfig,
     monitoringConfig,
     modelConfigurations: twitterConfig.model_configurations,
+    apiConfig,
   });
   return twitterAgent;
 };
