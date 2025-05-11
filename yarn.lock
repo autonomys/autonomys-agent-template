@@ -55,9 +55,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@autonomys/agent-core@npm:^0.2.4":
-  version: 0.2.4
-  resolution: "@autonomys/agent-core@npm:0.2.4"
+"@autonomys/agent-core@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@autonomys/agent-core@npm:0.3.1"
   dependencies:
     "@autonomys/auto-dag-data": "npm:1.4.17"
     "@autonomys/auto-drive": "npm:1.4.17"
@@ -65,6 +65,7 @@ __metadata:
     "@langchain/anthropic": "npm:0.3.17"
     "@langchain/community": "npm:0.3.40"
     "@langchain/core": "npm:0.3.44"
+    "@langchain/deepseek": "npm:^0.0.1"
     "@langchain/groq": "npm:0.2.0"
     "@langchain/langgraph": "npm:0.2.63"
     "@langchain/mcp-adapters": "npm:^0.4.2"
@@ -95,7 +96,7 @@ __metadata:
     xml2js: "npm:^0.6.2"
     zod: "npm:^3.22.4"
     zod-to-json-schema: "npm:^3.24.1"
-  checksum: 10c0/f249629b61a91cb407e39e1ab5bb7d15d7245c21dba544e13d6e02f04f4b7a1b817163cb568c65d72405a3a7c3908bdf5782dc94819acce755bd0e1317e825d5
+  checksum: 10c0/6bb81d5a7b8b63193af69123c4c0fe20b03e61a74773ecd8fa8abb9f58574b76724dd913c9c003a8b0435eb213a8f9c7a8ab828ed0f3cbd82bb0ad9ab9f1e09b
   languageName: node
   linkType: hard
 
@@ -1189,6 +1190,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@langchain/deepseek@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@langchain/deepseek@npm:0.0.1"
+  dependencies:
+    "@langchain/openai": "npm:^0.4.2"
+    zod: "npm:^3.24.1"
+  peerDependencies:
+    "@langchain/core": ">=0.3.0 <0.4.0"
+  checksum: 10c0/d4412a1e380ccc12f35169fde6541484f14ba08bb317d44d103fab3592f26e25b8c24c8d0553d30b1a90cd43f82a565623221211a77f0ac892d076df25984f4d
+  languageName: node
+  linkType: hard
+
 "@langchain/groq@npm:0.2.0":
   version: 0.2.0
   resolution: "@langchain/groq@npm:0.2.0"
@@ -1294,6 +1307,20 @@ __metadata:
   peerDependencies:
     "@langchain/core": ">=0.3.39 <0.4.0"
   checksum: 10c0/475c040f473f9c9270e8130c86d480f68834af5723e7e9b761c60152cafe5bc162e87856a4c654b12d6fe8f0cf99b27247b3869e4c0c79797847263523e045d4
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:^0.4.2":
+  version: 0.4.9
+  resolution: "@langchain/openai@npm:0.4.9"
+  dependencies:
+    js-tiktoken: "npm:^1.0.12"
+    openai: "npm:^4.87.3"
+    zod: "npm:^3.22.4"
+    zod-to-json-schema: "npm:^3.22.3"
+  peerDependencies:
+    "@langchain/core": ">=0.3.39 <0.4.0"
+  checksum: 10c0/456db6d039fad521caf9c2dab547075120d1156282c9eb891430b83f34d617121f4d97fda2be7954558910ddac8d235effe6071a002b93e60f460111318466d2
   languageName: node
   linkType: hard
 
@@ -3071,7 +3098,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "autonomys-agent-template@workspace:."
   dependencies:
-    "@autonomys/agent-core": "npm:^0.2.4"
+    "@autonomys/agent-core": "npm:^0.3.1"
     "@eslint/js": "npm:^9.18.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
     "@typescript-eslint/parser": "npm:^8.29.0"
